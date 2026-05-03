@@ -1,2 +1,8 @@
 backend/network_logs/
 *.jsonl
+
+backend/.env
+.env
+
+frontend/.env
+.env
