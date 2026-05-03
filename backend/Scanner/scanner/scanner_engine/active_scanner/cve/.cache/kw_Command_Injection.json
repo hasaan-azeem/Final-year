@@ -1,0 +1,78 @@
+{
+  "ts": 1773947686.1652765,
+  "records": [
+    {
+      "cve_id": "CVE-2016-10043",
+      "cvss_score": 10.0,
+      "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "severity": "critical",
+      "description": "An issue was discovered in Radisys MRF Web Panel (SWMS) 9.0.1. The MSM_MACRO_NAME POST parameter in /swms/ms.cgi was discovered to be vulnerable to OS command injection attacks. It is possible to use the pipe character (|) to inject arbitrary OS commands and retrieve the output in the application's responses. Attackers could execute unauthorized commands, which could then be used to disable the so",
+      "references": [
+        "https://www.exploit-db.com/exploits/41179/",
+        "https://www.exploit-db.com/exploits/41179/"
+      ],
+      "exploit_available": true,
+      "published": "2017-01-31T18:59:00.437",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2016-6818",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "severity": "critical",
+      "description": "SQL injection vulnerability in SAP Business Intelligence platform before January 2017 allows remote attackers to obtain sensitive information, modify data, cause a denial of service (data deletion), or launch administrative operations or possibly OS commands via a crafted SQL query. The vendor response is SAP Security Note 2361633.",
+      "references": [
+        "http://www.securityfocus.com/bid/97661",
+        "https://erpscan.io/press-center/blog/sap-cyber-threat-intelligence-report-january-2017/",
+        "http://www.securityfocus.com/bid/97661"
+      ],
+      "exploit_available": false,
+      "published": "2017-04-13T19:59:00.160",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2016-8721",
+      "cvss_score": 9.1,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:C/C:H/I:H/A:H",
+      "severity": "critical",
+      "description": "An exploitable OS Command Injection vulnerability exists in the web application 'ping' functionality of Moxa AWK-3131A Wireless Access Points running firmware 1.1. Specially crafted web form input can cause an OS Command Injection resulting in complete compromise of the vulnerable device. An attacker can exploit this vulnerability remotely.",
+      "references": [
+        "http://www.talosintelligence.com/reports/TALOS-2016-0235/",
+        "http://www.talosintelligence.com/reports/TALOS-2016-0235/"
+      ],
+      "exploit_available": true,
+      "published": "2017-04-20T18:59:01.577",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2017-8768",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "severity": "critical",
+      "description": "Atlassian SourceTree v2.5c and prior are affected by a command injection in the handling of the sourcetree:// scheme. It will lead to arbitrary OS command execution with a URL substring of sourcetree://cloneRepo/ext:: or sourcetree://checkoutRef/ext:: followed by the command. The Atlassian ID number is SRCTREE-4632.",
+      "references": [
+        "http://openwall.com/lists/oss-security/2017/05/03/5",
+        "http://seclists.org/fulldisclosure/2017/May/10",
+        "http://www.securityfocus.com/bid/98329"
+      ],
+      "exploit_available": false,
+      "published": "2017-05-04T22:29:00.197",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2017-4918",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "severity": "critical",
+      "description": "VMware Horizon View Client (2.x, 3.x and 4.x prior to 4.5.0) contains a command injection vulnerability in the service startup script. Successful exploitation of this issue may allow unprivileged users to escalate their privileges to root on the Mac OSX system where the client is installed.",
+      "references": [
+        "http://www.securityfocus.com/bid/98984",
+        "http://www.securitytracker.com/id/1038642",
+        "https://www.vmware.com/security/advisories/VMSA-2017-0011.html"
+      ],
+      "exploit_available": false,
+      "published": "2017-06-08T19:29:00.400",
+      "_source": "live"
+    }
+  ]
+}

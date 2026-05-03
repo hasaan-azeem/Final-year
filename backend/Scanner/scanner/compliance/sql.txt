@@ -1,0 +1,92 @@
+-- =============================================================================
+-- Migration: Compliance Checker Tables
+-- Run once:  psql $DATABASE_URL -f compliance/migration.sql
+-- =============================================================================
+
+-- ── compliance_violations ─────────────────────────────────────────────────────
+-- One row per (vulnerability × compliance rule) pair.
+-- Columns mirror the vulnerabilities table for fast read-back without joins.
+
+CREATE TABLE IF NOT EXISTS compliance_violations (
+    id               SERIAL          PRIMARY KEY,
+
+    -- Session context
+    session_id       TEXT            NOT NULL,
+    domain_id        INTEGER         NOT NULL,
+
+    -- Link to source vulnerability (cascade delete when vuln is removed)
+    vulnerability_id INTEGER         NOT NULL
+                     REFERENCES vulnerabilities(id) ON DELETE CASCADE,
+
+    -- Which standard / rule was violated
+    standard         TEXT            NOT NULL,   -- "OWASP Top 10" | "PCI-DSS" | ...
+    rule_id          TEXT            NOT NULL,   -- "A03:2021" | "PCI-6.2.4" | ...
+    rule_name        TEXT            NOT NULL,   -- "Injection"
+
+    -- Denormalised from vulnerabilities for fast filtering
+    vuln_type        TEXT            NOT NULL DEFAULT '',
+    category         TEXT            NOT NULL DEFAULT '',
+    title            TEXT            NOT NULL DEFAULT '',
+    page_url         TEXT            NOT NULL DEFAULT '',
+    severity         NUMERIC(5,2),
+    cvss_score       NUMERIC(5,2),
+    confidence       TEXT            NOT NULL DEFAULT '',
+
+    violated_at      TIMESTAMPTZ     NOT NULL DEFAULT NOW(),
+
+    -- Dedup: one row per (session × vuln × standard × rule)
+    CONSTRAINT compliance_violations_unique
+        UNIQUE (session_id, vulnerability_id, standard, rule_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_cv_session
+    ON compliance_violations (session_id);
+
+CREATE INDEX IF NOT EXISTS idx_cv_session_standard
+    ON compliance_violations (session_id, standard);
+
+CREATE INDEX IF NOT EXISTS idx_cv_domain
+    ON compliance_violations (domain_id);
+
+CREATE INDEX IF NOT EXISTS idx_cv_vuln_id
+    ON compliance_violations (vulnerability_id);
+
+
+-- ── compliance_scores ─────────────────────────────────────────────────────────
+-- One row per (session × domain × standard).
+-- Upserted on every run so re-scans always show latest state.
+
+CREATE TABLE IF NOT EXISTS compliance_scores (
+    id                SERIAL          PRIMARY KEY,
+
+    session_id        TEXT            NOT NULL,
+    domain_id         INTEGER         NOT NULL,
+    standard          TEXT            NOT NULL,   -- "OWASP Top 10" | "PCI-DSS" | ...
+
+    -- Rule counts
+    total_rules       INTEGER         NOT NULL,
+    violated_rules    INTEGER         NOT NULL,
+    compliant_rules   INTEGER         NOT NULL,
+
+    -- Score
+    score_percent     NUMERIC(5,2)    NOT NULL,   -- 0.00 – 100.00
+    status            TEXT            NOT NULL,   -- "pass" | "warn" | "fail"
+
+    -- Which rule IDs were violated (for quick lookup / dashboard display)
+    violated_rule_ids TEXT[]          NOT NULL DEFAULT '{}',
+
+    checked_at        TIMESTAMPTZ     NOT NULL DEFAULT NOW(),
+
+    -- One score row per (session, domain, standard)
+    CONSTRAINT compliance_scores_unique
+        UNIQUE (session_id, domain_id, standard)
+);
+
+CREATE INDEX IF NOT EXISTS idx_cs_session
+    ON compliance_scores (session_id);
+
+CREATE INDEX IF NOT EXISTS idx_cs_domain_standard
+    ON compliance_scores (domain_id, standard);
+
+CREATE INDEX IF NOT EXISTS idx_cs_status
+    ON compliance_scores (status);

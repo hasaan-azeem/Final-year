@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "name": "Insecure Direct Object Reference",
+    "category": "IDOR",
+    "cwe": "CWE-639",
+    "wasc": "WASC-2",
+    "reference": "https://owasp.org/www-chapter-ghana/assets/slides/IDOR.pdf"
+  },
+  "id_params": [
+    "id", "user_id", "account_id", "order_id", "record_id",
+    "file_id", "doc_id", "report_id", "invoice_id", "uid",
+    "pid", "rid", "tid", "object_id", "resource_id"
+  ],
+  "strategy": {
+    "numeric_neighbors": [-1, 1, 2, 100, 1000],
+    "common_ids": [1, 2, 3, 0],
+    "uuid_swap": false
+  },
+  "heuristics": {
+    "size_ratio_threshold": [0.4, 2.5],
+    "success_codes": [200, 201],
+    "failure_codes": [403, 404, 401]
+  }
+}

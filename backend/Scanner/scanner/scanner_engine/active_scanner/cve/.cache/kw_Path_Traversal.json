@@ -1,0 +1,80 @@
+{
+  "ts": 1774550878.249709,
+  "records": [
+    {
+      "cve_id": "CVE-2009-0244",
+      "cvss_score": 8.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "severity": "high",
+      "description": "Directory traversal vulnerability in the OBEX FTP Service in the Microsoft Bluetooth stack in Windows Mobile 6 Professional, and probably Windows Mobile 5.0 for Pocket PC and 5.0 for Pocket PC Phone Edition, allows remote authenticated users to list arbitrary directories, and create or read arbitrary files, via a .. (dot dot) in a pathname.  NOTE: this can be leveraged for code execution by writin",
+      "references": [
+        "http://secunia.com/advisories/33598",
+        "http://securityreason.com/securityalert/4938",
+        "http://www.securityfocus.com/archive/1/500199/100/0/threaded"
+      ],
+      "exploit_available": true,
+      "published": "2009-01-21T20:30:00.453",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2010-0012",
+      "cvss_score": 8.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "severity": "high",
+      "description": "Directory traversal vulnerability in libtransmission/metainfo.c in Transmission 1.22, 1.34, 1.75, and 1.76 allows remote attackers to overwrite arbitrary files via a .. (dot dot) in a pathname within a .torrent file.",
+      "references": [
+        "http://lists.opensuse.org/opensuse-security-announce/2010-01/msg00009.html",
+        "http://secunia.com/advisories/37993",
+        "http://secunia.com/advisories/38005"
+      ],
+      "exploit_available": false,
+      "published": "2010-01-08T17:30:02.317",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2015-0016",
+      "cvss_score": 7.8,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+      "severity": "high",
+      "description": "Directory traversal vulnerability in the TS WebProxy (aka TSWbPrxy) component in Microsoft Windows Vista SP2, Windows 7 SP1, Windows Server 2008 R2 SP1, Windows 8, Windows 8.1, Windows Server 2012 Gold and R2, and Windows RT Gold and 8.1 allows remote attackers to gain privileges via a crafted pathname in an executable file, as demonstrated by a transition from Low Integrity to Medium Integrity, a",
+      "references": [
+        "http://blog.trendmicro.com/trendlabs-security-intelligence/cve-2015-0016-escaping-the-internet-explorer-sandbox/",
+        "http://packetstormsecurity.com/files/130201/MS15-004-Microsoft-Remote-Desktop-Services-Web-Proxy-IE-Sandbox-Escape.html",
+        "http://secunia.com/advisories/62076"
+      ],
+      "exploit_available": true,
+      "published": "2015-01-13T22:59:07.190",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2015-3035",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "severity": "high",
+      "description": "Directory traversal vulnerability in TP-LINK Archer C5 (1.2) with firmware before 150317, C7 (2.0) with firmware before 150304, and C8 (1.0) with firmware before 150316, Archer C9 (1.0), TL-WDR3500 (1.0), TL-WDR3600 (1.0), and TL-WDR4300 (1.0) with firmware before 150302, TL-WR740N (5.0) and TL-WR741ND (5.0) with firmware before 150312, and TL-WR841N (9.0), TL-WR841N (10.0), TL-WR841ND (9.0), and ",
+      "references": [
+        "http://packetstormsecurity.com/files/131378/TP-LINK-Local-File-Disclosure.html",
+        "http://seclists.org/fulldisclosure/2015/Apr/26",
+        "http://www.securityfocus.com/archive/1/535240/100/0/threaded"
+      ],
+      "exploit_available": true,
+      "published": "2015-04-22T01:59:02.553",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2016-0752",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "severity": "high",
+      "description": "Directory traversal vulnerability in Action View in Ruby on Rails before 3.2.22.1, 4.0.x and 4.1.x before 4.1.14.1, 4.2.x before 4.2.5.1, and 5.x before 5.0.0.beta1.1 allows remote attackers to read arbitrary files by leveraging an application's unrestricted use of the render method and providing a .. (dot dot) in a pathname.",
+      "references": [
+        "http://lists.fedoraproject.org/pipermail/package-announce/2016-February/178044.html",
+        "http://lists.fedoraproject.org/pipermail/package-announce/2016-February/178069.html",
+        "http://lists.opensuse.org/opensuse-security-announce/2016-04/msg00053.html"
+      ],
+      "exploit_available": true,
+      "published": "2016-02-16T02:59:06.783",
+      "_source": "live"
+    }
+  ]
+}

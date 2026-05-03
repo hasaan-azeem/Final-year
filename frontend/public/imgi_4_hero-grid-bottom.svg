@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="none" id="uuid-65819e77-b441-47b3-a003-42cb838c7d2d" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1921.76 175.13">
+  <defs>
+    <radialGradient id="uuid-215dd630-add4-4cb5-9778-523d122a7ea4" cx="1178.84" cy="-306.39" fx="1178.84" fy="-306.39" r="1175.88" gradientTransform="translate(175.67 -190.3) scale(.89 .41)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".16" stop-color="#fbfbfb"/>
+      <stop offset=".28" stop-color="#f1f1f1"/>
+      <stop offset=".41" stop-color="#e0e0e0"/>
+      <stop offset=".52" stop-color="#c7c7c7"/>
+      <stop offset=".63" stop-color="#a7a7a7"/>
+      <stop offset=".74" stop-color="#818181"/>
+      <stop offset=".84" stop-color="#535353"/>
+      <stop offset=".95" stop-color="#1f1f1f"/>
+      <stop offset="1" stop-color="#000"/>
+    </radialGradient>
+    <mask id="uuid-c52a4b5d-990d-4deb-8e14-3f43711a5e0c" data-name="mask" x="0" y="-809.46" width="2274.85" height="984.59" maskUnits="userSpaceOnUse">
+      <ellipse cx="1225.36" cy="-317.39" rx="1049.5" ry="492.07" fill="url(#uuid-215dd630-add4-4cb5-9778-523d122a7ea4)" opacity=".7"/>
+    </mask>
+  </defs>
+  <g id="uuid-bcea640b-6b70-483c-a963-4b8b744fbf70" data-name="Layer 2">
+    <g mask="url(#uuid-c52a4b5d-990d-4deb-8e14-3f43711a5e0c)">
+      <g>
+        <path d="m.21,115.32h1921.36" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21,90.94h1921.36" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21,69.72h1921.36" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21,51.66h1921.36" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21,35.86h1921.36" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21,22.32h1921.36" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21,11.03h1921.36" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21.65h1921.36" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m960.13,174.68V.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m794.23,174.68L878.55.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m628.34,174.68L796.98.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m468.24,170.69L715.41.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m304.28,170.69L633.84.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m140.32,170.69L552.27.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21,162.49L470.7.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m.21,115.32L389.13.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m1127.56,174.68L1043.24.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m1293.44,174.68L1124.81.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m1453.54,170.69L1206.38.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m1617.51,170.69L1287.95.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m1781.46,170.69L1369.51.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m1920.71,162.19L1451.08.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+        <path d="m1921.58,115.32L1532.65.65" fill="none" stroke="#7d838c" stroke-miterlimit="10" stroke-width="1.3"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,47 @@
+{
+  "ts": 1774604956.1534257,
+  "records": [
+    {
+      "cve_id": "CVE-2022-22797",
+      "cvss_score": 4.6,
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+      "severity": "medium",
+      "description": "Sysaid \u2013 sysaid Open Redirect - An Attacker can change the redirect link at the parameter \"redirectURL\" from\"GET\" request from the url location: /CommunitySSORedirect.jsp?redirectURL=https://google.com. Unvalidated redirects and forwards are possible when a web application accepts untrusted input that could cause the web application to redirect the request to a URL contained within untrusted input",
+      "references": [
+        "https://www.gov.il/en/departments/faq/cve_advisories",
+        "https://www.gov.il/en/departments/faq/cve_advisories"
+      ],
+      "exploit_available": false,
+      "published": "2022-05-12T20:15:14.913",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2026-28415",
+      "cvss_score": 4.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+      "severity": "medium",
+      "description": "Gradio is an open-source Python package designed for quick prototyping. Prior to version 6.6.0, the _redirect_to_target() function in Gradio's OAuth flow accepts an unvalidated _target_url query parameter, allowing redirection to arbitrary external URLs. This affects the /logout and /login/callback endpoints on Gradio apps with OAuth enabled (i.e. apps running on Hugging Face Spaces with gr.LoginB",
+      "references": [
+        "https://github.com/gradio-app/gradio/security/advisories/GHSA-pfjf-5gxr-995x"
+      ],
+      "exploit_available": false,
+      "published": "2026-02-27T22:16:24.497",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2026-33296",
+      "cvss_score": 6.1,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+      "severity": "medium",
+      "description": "WWBN AVideo is an open source video platform. Prior to version 26.0, WWBN/AVideo contains an open redirect vulnerability in the login flow where a user-supplied redirectUri parameter is reflected directly into a JavaScript `document.location` assignment without JavaScript-safe encoding. After a user completes the login popup flow, a timer callback executes the redirect using the unvalidated value,",
+      "references": [
+        "https://github.com/WWBN/AVideo/commit/68d0fbb19e382fe62e6cc7bd48b51ffa1d9e310e",
+        "https://github.com/WWBN/AVideo/security/advisories/GHSA-hj5h-5623-gwhw",
+        "https://github.com/WWBN/AVideo/security/advisories/GHSA-hj5h-5623-gwhw"
+      ],
+      "exploit_available": true,
+      "published": "2026-03-22T17:17:09.420",
+      "_source": "live"
+    }
+  ]
+}

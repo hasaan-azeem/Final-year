@@ -1,0 +1,80 @@
+{
+  "ts": 1777193235.9057338,
+  "records": [
+    {
+      "cve_id": "CVE-2006-1215",
+      "cvss_score": 4.3,
+      "cvss_vector": "",
+      "severity": "medium",
+      "description": "Cross-site scripting (XSS) vulnerability in misc.php in Woltlab Burning Board (wBB) 2.3.4 allows remote attackers to inject arbitrary web script or HTML via the percent parameter.  NOTE: this issue has been disputed in a followup post, although the original disclosure might be related to reflected XSS.",
+      "references": [
+        "http://www.securityfocus.com/archive/1/426766",
+        "http://www.securityfocus.com/archive/1/426816/30/0/threaded",
+        "http://www.securityfocus.com/bid/16959"
+      ],
+      "exploit_available": true,
+      "published": "2006-03-14T02:02:00.000",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2006-3001",
+      "cvss_score": 5.8,
+      "cvss_vector": "",
+      "severity": "medium",
+      "description": "Cross-site scripting (XSS) vulnerability in search.php in OkScripts OkMall 1.0 allow remote attackers to inject arbitrary web script or HTML via the page parameter.  NOTE: this might be resultant from another vulnerability, since the XSS is reflected in an error message.",
+      "references": [
+        "http://secunia.com/advisories/20621",
+        "http://securityreason.com/securityalert/1080",
+        "http://www.securityfocus.com/archive/1/436561"
+      ],
+      "exploit_available": true,
+      "published": "2006-06-13T01:02:00.000",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2008-3358",
+      "cvss_score": 4.3,
+      "cvss_vector": "",
+      "severity": "medium",
+      "description": "Cross-site scripting (XSS) vulnerability in Web Dynpro (WD) in the SAP NetWeaver portal, when Internet Explorer 7.0.5730 is used, allows remote attackers to inject arbitrary web script or HTML via a crafted URI, which causes the XSS payload to be reflected in a text/plain document.",
+      "references": [
+        "http://osvdb.org/51627",
+        "http://secunia.com/advisories/33685",
+        "http://service.sap.com/sap/support/notes/1235253"
+      ],
+      "exploit_available": false,
+      "published": "2009-01-28T18:30:00.170",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2011-1891",
+      "cvss_score": 4.3,
+      "cvss_vector": "",
+      "severity": "medium",
+      "description": "Cross-site scripting (XSS) vulnerability in Microsoft Windows SharePoint Services 3.0 SP2, and SharePoint Foundation 2010 Gold and SP1, allows remote attackers to inject arbitrary web script or HTML via unspecified parameters in a request to a script, aka \"Contact Details Reflected XSS Vulnerability.\"",
+      "references": [
+        "http://www.us-cert.gov/cas/techalerts/TA11-256A.html",
+        "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2011/ms11-074",
+        "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A12864"
+      ],
+      "exploit_available": false,
+      "published": "2011-09-15T12:26:48.617",
+      "_source": "live"
+    },
+    {
+      "cve_id": "CVE-2011-1896",
+      "cvss_score": 4.3,
+      "cvss_vector": "",
+      "severity": "medium",
+      "description": "Cross-site scripting (XSS) vulnerability in Microsoft Forefront Unified Access Gateway (UAG) 2010 Gold, Update 1, Update 2, and SP1 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors, aka \"ExcelTable Reflected XSS Vulnerability.\"",
+      "references": [
+        "http://osvdb.org/76233",
+        "https://docs.microsoft.com/en-us/security-updates/securitybulletins/2011/ms11-079",
+        "https://oval.cisecurity.org/repository/search/definition/oval%3Aorg.mitre.oval%3Adef%3A12197"
+      ],
+      "exploit_available": false,
+      "published": "2011-10-12T02:52:43.347",
+      "_source": "live"
+    }
+  ]
+}

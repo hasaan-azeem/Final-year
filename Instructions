@@ -1,0 +1,11 @@
+<!-- This command is used to run Scanner and models
+
+uvicorn Scanner.app:app --loop asyncio
+
+This is used to run Front-End
+
+npm run dev
+
+This is used to run Authentication
+
+python app.py -->

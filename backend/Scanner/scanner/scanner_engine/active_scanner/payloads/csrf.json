@@ -1,0 +1,14 @@
+{
+  "meta": {
+    "name": "Cross-Site Request Forgery",
+    "category": "CSRF",
+    "cwe": "CWE-352",
+    "wasc": "WASC-9",
+    "reference": "https://owasp.org/www-community/attacks/csrf"
+  },
+  "token_field_names": [
+    "csrf", "csrf_token", "_csrf", "csrftoken", "csrfmiddlewaretoken",
+    "_token", "authenticity_token", "__RequestVerificationToken",
+    "csrf_nonce", "xsrf", "xsrf_token", "_xsrf", "anti_csrf"
+  ]
+}

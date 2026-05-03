@@ -1,0 +1,34 @@
+{
+"meta": {
+"name": "Server-Side Template Injection",
+"category": "SSTI",
+"cwe": "CWE-94",
+"wasc": "WASC-20",
+"reference": "https://portswigger.net/research/server-side-template-injection"
+},
+
+"payloads": [
+
+{ "value": "{{7*7}}", "expected": "49" },
+{ "value": "{{7+7}}", "expected": "14" },
+{ "value": "{{7*'7'}}", "expected": "7777777" },
+
+{ "value": "${7*7}", "expected": "49" },
+{ "value": "#{7*7}", "expected": "49" },
+
+{ "value": "<%=7*7%>", "expected": "49" },
+
+{ "value": "{{7*7}}{{7*7}}", "expected": "4949" },
+
+{ "value": "WEBX{{7*7}}", "expected": "WEBX49" },
+{ "value": "{{7*7}}WEBX", "expected": "49WEBX" },
+{ "value": "WEBX{{7*7}}WEBX", "expected": "WEBX49WEBX" },
+
+{ "value": "${{7*7}}", "expected": "49" },
+
+{ "value": "{{2**10}}", "expected": "1024" },
+
+{ "value": "{{100//5}}", "expected": "20" }
+
+]
+}
