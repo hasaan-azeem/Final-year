@@ -13,6 +13,7 @@ import { getPasswordStrength } from "../../utils/passwordStrength";
 import API from "../../api/backend_api";
 import { AuthContext } from "../../context/AuthContext";
 import AuthLoader from "../../components/AuthLoader";
+import logo from "../../assets/logo.svg";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -106,12 +107,26 @@ export default function Signup() {
       {/* LEFT SIDE - EMAIL INFO PANEL */}
       <div className="hidden md:flex w-1/2 relative items-center justify-center">
         <div className="absolute w-[600px] h-[600px] bg-emerald-500/10 blur-[140px] rounded-full" />
-        <div className="absolute w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full bottom-[-120px] right-[-80px]" />
+        <div className="absolute w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full bottom-[-120px] -right-20" />
 
-        <div className="relative z-10 max-w-md px-10">
-          <h1 className="text-4xl font-bold text-white">
-            Secure your <span className="text-[#059669]">Email Access</span>
-          </h1>
+        <div className="relative z-10 max-w-md px-10 -mt-10">
+          <div className="text-center">
+            {/* LOGO */}
+            <div className="mb-4 flex justify-center">
+              <Link to="/">
+                <img
+                  src={logo}
+                  alt="WebXGuard"
+                  className="w-24 cursor-pointer"
+                />
+              </Link>
+            </div>
+
+            {/* HEADING */}
+            <h1 className="text-4xl font-bold text-white">
+              Secure your <span className="text-[#059669]">Email Access</span>
+            </h1>
+          </div>
 
           <p className="text-gray-400 text-sm mt-4">
             Use your email to create a secure WebXGuard account and start
@@ -119,7 +134,7 @@ export default function Signup() {
           </p>
 
           {/* EMAIL HIGHLIGHT BOX */}
-          <div className="mt-8 p-4 rounded-xl bg-white/5 border border-white/10">
+          <div className="mt-4 p-4 rounded-xl bg-white/5 border border-white/10">
             <p className="text-xs text-gray-400">Recommended</p>
             <p className="text-white text-sm mt-1">
               Use a professional email for better security insights and
@@ -127,7 +142,7 @@ export default function Signup() {
             </p>
           </div>
 
-          <div className="mt-10 space-y-3">
+          <div className="mt-6 space-y-3">
             {/* GOOGLE */}
             <button
               type="button"

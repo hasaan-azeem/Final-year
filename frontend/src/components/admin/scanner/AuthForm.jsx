@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useState, useRef, useEffect } from "react";
 import {
   Lock,
@@ -154,7 +155,7 @@ export default function AuthForm({ onChange, mainUrl = "" }) {
       {/* ── Dropdown panel ────────────────────────────────────────────────── */}
       {open && (
         <div
-          className="absolute top-full left-0 mt-2 z-50 w-80 sm:w-[26rem] rounded-xl
+          className="absolute top-full left-0 mt-2 z-50 w-80 sm:w-104 rounded-xl
           bg-gray-950 border border-emerald-500/25 shadow-2xl shadow-black/60 overflow-hidden"
         >
           {/* Header */}

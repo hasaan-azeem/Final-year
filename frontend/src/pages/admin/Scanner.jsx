@@ -30,6 +30,7 @@ import {
   getCrawlerQueue,
 } from "../../services/scanner_api";
 import { pushAlert } from "../../services/extras_api";
+import ScanConfigModal from "../../components/admin/scanner/ScanConfigModal";
 
 // ─── Persistence keys ──────────────────────────────────────────────────────
 const STORAGE_KEY = "webxguard_lastScan";
@@ -91,6 +92,8 @@ export default function Scanner() {
   const pollRef = useRef(null);
   const crawlerPollRef = useRef(null);
   const sessionIdRef = useRef(null);
+
+  const [scanConfig, setScanConfig] = useState({});
 
   // ── Restore last scan from localStorage on mount ───────────────────────
   useEffect(() => {
@@ -263,6 +266,7 @@ export default function Scanner() {
         login_pass_field: authData?.enabled
           ? authData.login_pass_field || null
           : null,
+        ...scanConfig,
       };
 
       const d = await startScan(payload);
@@ -342,6 +346,8 @@ export default function Scanner() {
                 transition text-sm"
             />
           </div>
+          <ScanConfigModal onChange={setScanConfig} />
+
           <AuthForm onChange={setAuthData} mainUrl={url} />
           <button
             onClick={submit}

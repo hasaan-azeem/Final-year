@@ -5,39 +5,6 @@ import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { Highlighter } from "@/components/ui/highlighter";
 import PremiumDashboard from "./PremiumDashboard";
 
-const tooltipItems = [
-  {
-    id: 1,
-    name: "Tehzeeb Kousar",
-    designation: "Cyber Security",
-    image: "/testimonials/tk.jfif",
-  },
-  {
-    id: 2,
-    name: "Warisha Hammad",
-    designation: "AI/ML Engineer",
-    image: "/testimonials/wari.jpg",
-  },
-  {
-    id: 3,
-    name: "Hasaan Azeem",
-    designation: "Full Stack Developer",
-    image: "/testimonials/hasaan.jpeg",
-  },
-  {
-    id: 4,
-    name: "Sir Usman Zia",
-    designation: "Supervisor",
-    image: "/testimonials/sir_usman.jpg",
-  },
-  {
-    id: 5,
-    name: "Ma'am Mariyam",
-    designation: "Defense Committee",
-    image: "/testimonials/maam_mariyam.jpg",
-  },
-];
-
 const Hero = () => {
   const navigate = useNavigate();
 
@@ -110,11 +77,6 @@ const Hero = () => {
               >
                 Explore Features
               </button>
-            </div>
-
-            {/* Tooltip */}
-            <div className="mt-10 flex justify-center cursor-pointer">
-              <AnimatedTooltip items={tooltipItems} />
             </div>
           </div>
         </div>

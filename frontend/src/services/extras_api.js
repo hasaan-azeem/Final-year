@@ -5,19 +5,27 @@
 // Mocks aur localStorage alerts wala fallback hata diya gaya hai.
 //
 // Endpoints:
-//   GET    /api/alerts                    → list
-//   GET    /api/alerts/unread-count       → count
-//   POST   /api/alerts/{id}/read          → mark one read
-//   POST   /api/alerts/read-all           → mark all read
-//   DELETE /api/alerts                    → dismiss all
+//   GET    /api/alerts                       → list
+//   GET    /api/alerts/unread-count          → count
+//   POST   /api/alerts/{id}/read             → mark one read
+//   POST   /api/alerts/read-all              → mark all read
+//   DELETE /api/alerts                       → dismiss all
 //
-//   GET    /api/compliance/{session_id}   → real compliance for one scan
-//   GET    /api/compliance/latest         → latest for current user
+//   GET    /api/compliance/{session_id}      → real compliance for one scan
+//   GET    /api/compliance/latest            → latest for current user
 //
-//   GET    /api/predictive/{session_id}   → real posture forecast
-//   GET    /api/predictive/latest         → latest posture for user
+//   GET    /api/predictive/{session_id}      → real posture forecast
+//   GET    /api/predictive/latest            → latest posture for user
 //
-//   GET    /api/scan/crawler/{session_id} → real crawler view
+//   GET    /api/scan/crawler/{session_id}    → real crawler view
+//
+//   ★ NEW — AI remediation
+//   GET    /api/remediation/{vuln_id}              → fix for one vuln
+//   GET    /api/remediation/session/{session_id}   → batch (vulns + fixes)
+//
+//   ★ NEW — User notification preferences
+//   GET    /api/me/notifications                   → email_enabled, min_severity
+//   PUT    /api/me/notifications                   → update prefs
 // ─────────────────────────────────────────────────────────────────────────────
 
 const BASE = "http://localhost:8000";
@@ -83,12 +91,9 @@ export async function clearAlerts() {
 
 /**
  * pushAlert — kept as no-op for backward compatibility.
- * Alerts are now created server-side automatically when a scan finishes
- * (Critical/High findings) or when the posture/anomaly engines flag an issue.
- * Frontend code calling pushAlert(...) doesn't need to change.
+ * Alerts are now created server-side automatically.
  */
 export function pushAlert(_alert) {
-  // intentionally no-op — server creates alerts now
   return [];
 }
 
@@ -121,4 +126,47 @@ export async function getPredictive(sessionId) {
 export async function getCrawlerData(sessionId) {
   if (!sessionId) return null;
   return await safeFetch(`/api/scan/crawler/${sessionId}`);
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// ★ NEW — AI REMEDIATION
+// ═════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Get the AI-generated fix for a single vulnerability.
+ * Returns: { summary, fix_steps[], code_example, references[], source, model }
+ */
+export async function getRemediation(vulnId) {
+  if (!vulnId) return null;
+  return await safeFetch(`/api/remediation/${vulnId}`);
+}
+
+/**
+ * Bulk: get every vuln in a scan session merged with its remediation.
+ * Frontend ScanDetail page calls this once.
+ *
+ * Returns array of:
+ *   { id, title, page_url, category, cvss_score, priority_category, ...,
+ *     remediation: { summary, fix_steps, code_example, references } }
+ */
+export async function getRemediationsForSession(sessionId) {
+  if (!sessionId) return [];
+  const data = await safeFetch(`/api/remediation/session/${sessionId}`);
+  return Array.isArray(data) ? data : [];
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// ★ NEW — USER NOTIFICATION PREFERENCES
+// ═════════════════════════════════════════════════════════════════════════════
+
+export async function getNotificationPrefs() {
+  const data = await safeFetch("/api/me/notifications");
+  return data || { email_enabled: true, min_severity: "High" };
+}
+
+export async function updateNotificationPrefs({ email_enabled, min_severity }) {
+  return await safeFetch("/api/me/notifications", {
+    method: "PUT",
+    body: JSON.stringify({ email_enabled, min_severity }),
+  });
 }

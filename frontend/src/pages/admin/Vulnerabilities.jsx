@@ -103,7 +103,7 @@ const Vulnerability = () => {
             disabled={loading}
             className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-700
               text-slate-400 text-sm hover:text-white hover:border-slate-500 transition
-              disabled:opacity-40 disabled:cursor-not-allowed"
+              disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
           >
             <RefreshCw size={14} className={loading ? "animate-spin" : ""} />
             Refresh

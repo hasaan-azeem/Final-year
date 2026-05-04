@@ -166,7 +166,7 @@ export default function Alerts() {
               className={`bg-[#111827] border rounded-xl p-4 hover:border-slate-700 transition cursor-pointer ${
                 alert.read
                   ? "border-slate-800/60"
-                  : "border-emerald-500/20 bg-emerald-500/[0.02]"
+                  : "border-emerald-500/20 bg-emerald-500/2"
               }`}
             >
               <div className="flex items-start gap-4">
@@ -206,9 +206,7 @@ export default function Alerts() {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigate(
-                      `/dashboard/vulnerability/${alert.scan_session}`,
-                    );
+                    navigate(`/dashboard/vulnerability/${alert.scan_session}`);
                   }}
                   className="shrink-0 p-2 rounded-lg border border-slate-700 text-slate-400
                     hover:text-white hover:border-slate-500 transition cursor-pointer"

@@ -243,6 +243,24 @@ def create_alert_sync(
                 "[Alerts] sync ✓ id=%s  user=%s  domain=%s  sev=%s  src=%s",
                 new_id, user_id, domain, sev, source,
             )
+
+            # ★ NEW — fire-and-forget email
+            if user_id:
+                try:
+                    from .email_sender import try_send_email_for_alert_sync
+                    try_send_email_for_alert_sync({
+                        "id":          new_id,
+                        "user_id":     user_id,
+                        "domain":      domain,
+                        "severity":    sev,
+                        "source":      source,
+                        "title":       title,
+                        "description": description,
+                        "url":         url,
+                    })
+                except Exception as e:
+                    logger.debug("[Alerts] email hook (sync) failed: %s", e)
+
             return new_id
     except Exception as e:
         logger.error("[Alerts] sync create failed: %s", e, exc_info=True)
@@ -382,6 +400,22 @@ async def create_alert_async(
                 "[Alerts] async ✓ id=%s  user=%s  domain=%s  sev=%s  src=%s",
                 new_id, user_id, domain, sev, source,
             )
+            # ★ NEW — fire-and-forget email
+            if user_id:
+                try:
+                    from .email_sender import try_send_email_for_alert_async
+                    await try_send_email_for_alert_async({
+                        "id":          new_id,
+                        "user_id":     user_id,
+                        "domain":      domain,
+                        "severity":    sev,
+                        "source":      source,
+                        "title":       title,
+                        "description": description,
+                        "url":         url,
+                    })
+                except Exception as e:
+                    logger.debug("[Alerts] email hook (async) failed: %s", e)
         return new_id
     except Exception as e:
         logger.error("[Alerts] async create failed: %s", e, exc_info=True)

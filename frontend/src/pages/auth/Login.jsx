@@ -7,6 +7,7 @@ import { validateEmail, validatePassword } from "../../utils/validators";
 import API from "../../api/backend_api";
 import { AuthContext } from "../../context/AuthContext";
 import AuthLoader from "../../components/AuthLoader";
+import logo from "../../assets/logo.svg";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -89,6 +90,9 @@ export default function Login() {
         <div className="absolute w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full bottom-[-120px] -right-20" />
 
         <div className="relative z-10 text-center px-10 max-w-md">
+          <div className="mb-6 flex justify-center">
+            <img src={logo} className="w-20" />
+          </div>
           <h1 className="text-4xl font-bold text-white">
             Welcome to <span className="text-[#059669]">WebXGuard</span>
           </h1>

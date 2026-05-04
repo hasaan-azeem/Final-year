@@ -558,3 +558,104 @@ async def crawler_for_session(
         "forms":      forms,
         "queue":      queue,
     }
+
+# =============================================================================
+# REMEDIATION ENDPOINTS
+# =============================================================================
+
+@router.get("/api/remediation/{vulnerability_id}")
+async def remediation_for_vuln(
+    vulnerability_id: int,
+    user_id:          int = Depends(get_current_user_id),
+):
+    """
+    Get the remediation suggestion for ONE vulnerability.
+    Looks in cache → static KB → Groq LLM → generic stub.
+    """
+    from .scanner.ai_remediation import get_remediation_for_vuln
+
+    # Verify the vuln belongs to user
+    row = await fetchrow(
+        """
+        SELECT v.id, v.page_url, v.title, v.category, v.cwe, v.severity,
+               v.priority_category, v.session_id::text AS session_id
+        FROM   vulnerabilities v
+        JOIN   scan_sessions   s ON s.id = v.session_id
+        WHERE  v.id = $1 AND s.user_id = $2
+        """,
+        vulnerability_id, user_id,
+    )
+    if not row:
+        raise HTTPException(404, "Vulnerability not found")
+
+    return await get_remediation_for_vuln(dict(row))
+
+
+@router.get("/api/remediation/session/{session_id}")
+async def remediations_for_session(
+    session_id: str,
+    user_id:    int = Depends(get_current_user_id),
+):
+    """
+    Bulk: get every vuln in a scan session merged with its remediation.
+    Frontend ScanDetail page calls this once.
+    """
+    await _ensure_session_owned(session_id, user_id)
+    from .scanner.ai_remediation import get_remediations_for_session_async
+    return await get_remediations_for_session_async(session_id)
+
+
+# =============================================================================
+# USER PREFERENCES (email alerts on/off, severity threshold)
+# =============================================================================
+
+from pydantic import BaseModel as _BaseModel
+
+
+class _PrefsRequest(_BaseModel):
+    email_enabled: bool | None = None
+    min_severity:  str  | None = None
+
+
+@router.get("/api/me/notifications")
+async def get_my_prefs(user_id: int = Depends(get_current_user_id)):
+    row = await fetchrow(
+        """
+        SELECT email_enabled, min_severity
+        FROM   user_notification_preferences
+        WHERE  user_id = $1
+        """,
+        user_id,
+    )
+    if not row:
+        return {"email_enabled": True, "min_severity": "High"}
+    return {
+        "email_enabled": bool(row["email_enabled"]),
+        "min_severity":  row["min_severity"] or "High",
+    }
+
+
+@router.put("/api/me/notifications")
+async def update_my_prefs(
+    body:    _PrefsRequest,
+    user_id: int = Depends(get_current_user_id),
+):
+    sev = body.min_severity
+    if sev and sev not in {"Critical", "High", "Medium", "Low"}:
+        raise HTTPException(400, "Invalid min_severity")
+
+    from .scanner.db import execute
+    await execute(
+        """
+        INSERT INTO user_notification_preferences (user_id, email_enabled, min_severity)
+        VALUES ($1, $2, $3)
+        ON CONFLICT (user_id) DO UPDATE
+            SET email_enabled = COALESCE(EXCLUDED.email_enabled, user_notification_preferences.email_enabled),
+                min_severity  = COALESCE(EXCLUDED.min_severity,  user_notification_preferences.min_severity),
+                updated_at    = NOW()
+        """,
+        user_id,
+        body.email_enabled,
+        sev,
+    )
+    return {"ok": True}

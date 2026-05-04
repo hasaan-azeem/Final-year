@@ -1,20 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// Agar logo assets folder me hai to uncomment karo:
+import logo from "../../../assets/logo.svg";
 
 const Footer = () => {
-  // FOOTER COLUMNS DATA: Organized list of links for different sections
-  // Each column has a title and an array of links
   const footerColumns = [
-    {
-      title: "PRODUCT",
-      links: [
-        { name: "WebXGuard Overview", url: "/overview" },
-        { name: "AI Vulnerability Scanner", url: "/scanner" },
-        { name: "Continuous Monitoring", url: "/monitoring" },
-        { name: "Reporting Dashboard", url: "/dashboard" },
-        { name: "Compliance Checker", url: "/compliance" },
-      ],
-    },
     {
       title: "CAPABILITIES",
       links: [
@@ -59,19 +49,16 @@ const Footer = () => {
     },
   ];
 
-  // BOTTOM LINKS: Quick links shown at the very bottom
   const bottomLinks = [
     { name: "Login", url: "/auth/dashboard/login" },
     { name: "Privacy Policy", url: "/privacy-policy" },
     { name: "Terms of Use", url: "/terms" },
   ];
 
-  // SOCIAL MEDIA LINKS: Icons and URLs for social platforms
   const socialLinks = [
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com",
-      // SVG icon for LinkedIn
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +73,6 @@ const Footer = () => {
     {
       name: "X",
       url: "https://www.twitter.com",
-      // SVG icon for X (Twitter)
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +87,6 @@ const Footer = () => {
     {
       name: "Facebook",
       url: "https://www.facebook.com",
-      // SVG icon for Facebook
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -117,17 +102,30 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-gray-100 pt-12">
-      {/* MAIN FOOTER COLUMNS SECTION */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 pb-8">
-        {/* Loop through each column */}
+      {/* MAIN SECTION */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-12 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pb-8 items-start">
+        {/* LOGO COLUMN */}
+        <div className="flex flex-col items-start">
+          <Link to="/">
+            <img
+              src={logo} // agar import use kar rahe ho
+              alt="WebXGuard Logo"
+              className="w-20 mb-4 drop-shadow-lg cursor-pointer"
+            />
+          </Link>
+          <p className="text-sm text-gray-400">
+            AI-powered web security platform to scan, detect and protect your
+            applications.
+          </p>
+        </div>
+
+        {/* FOOTER COLUMNS */}
         {footerColumns.map((column, columnIndex) => (
           <div key={columnIndex}>
-            {/* Column title */}
-            <h4 className="font-bold mb-4">{column.title}</h4>
-
-            {/* Column links */}
+            <h4 className="font-semibold mb-4 text-white tracking-wide">
+              {column.title}
+            </h4>
             <ul className="space-y-2 text-sm">
-              {/* Loop through each link in this column */}
               {column.links.map((link, linkIndex) => (
                 <li key={linkIndex}>
                   <Link
@@ -143,22 +141,20 @@ const Footer = () => {
         ))}
       </div>
 
-      {/* BOTTOM SECTION: Links and Social Icons */}
+      {/* BOTTOM SECTION */}
       <div className="border-t border-gray-700 pt-6 pb-4 max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
-        {/* Bottom links (Login, Privacy, Terms) */}
         <div className="flex flex-wrap gap-4 mb-4 md:mb-0">
           {bottomLinks.map((link, index) => (
             <a
               key={index}
               href={link.url}
-              className="transition-colors duration-300 text-gray-100 hover:text-[#059669]"
+              className="text-gray-100 hover:text-[#059669]"
             >
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* Social media icons */}
         <div className="flex space-x-4 text-gray-100 text-lg">
           {socialLinks.map((social, index) => (
             <a
@@ -166,7 +162,7 @@ const Footer = () => {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors duration-300 text-gray-100 hover:text-[#059669]"
+              className="hover:text-[#059669]"
             >
               {social.icon}
             </a>
@@ -174,7 +170,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* COPYRIGHT SECTION */}
+      {/* COPYRIGHT */}
       <div className="text-center text-gray-300 text-sm py-4">
         © WebXGuard 2025, By Technologants
       </div>
@@ -182,5 +178,4 @@ const Footer = () => {
   );
 };
 
-// Export the component
 export default Footer;
